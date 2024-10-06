@@ -1,9 +1,6 @@
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
+import Login from '@/mfe-modules/login';
 
-const RemoteComponent = dynamic(() => import('dashboard/dashboard'), {
-  ssr: false,
-});
 export default function Home() {
   return (
     <>
@@ -15,7 +12,7 @@ export default function Home() {
       </Head>
       <div>
         <h1>Container App</h1>
-        <RemoteComponent />
+        <Login />
       </div>
     </>
   );

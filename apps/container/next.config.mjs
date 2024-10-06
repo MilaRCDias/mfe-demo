@@ -3,11 +3,15 @@ import { NextFederationPlugin } from '@module-federation/nextjs-mf';
 
 const MODULE_PATHS = {
   dashboard: 'dashboard',
+  onboarding: 'onboarding'
 }
 
 const LOCAL_OVERRIDES = {
   dashboard :{
     localPort: '3001'
+  },
+  onboarding:{
+    localPort: '3002'
   }
 }
 
