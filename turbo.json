@@ -18,6 +18,10 @@
       "dependsOn": [
         "^build"
       ]
-    }
+    },
+    "test:watch": {
+      "cache": false
+    },
+    "typecheck": {}
   }
 }
