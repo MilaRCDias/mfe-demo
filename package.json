@@ -6,7 +6,10 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "lint:fix": "eslint --fix",
+    "prettier:fix": "prettier --write \"./**/*.{ts,js,tsx,json,*rc}\"",
+    "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -14,7 +17,12 @@
     "typescript": "^5.4.5",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "eslint": "^9.12.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10"
   },
   "engines": {
     "node": ">=18"
@@ -22,5 +30,9 @@
   "packageManager": "yarn@1.22.10",
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "lint-staged": {
+    "apps/*/{src,test}/**/*.{ts,tsx}": "yarn lint:fix",
+    "./**/*.{ts,js,tsx,json,*rc}": "yarn prettier:fix"
+  }
 }
