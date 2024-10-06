@@ -1,6 +1,9 @@
 import Head from "next/head";
+import dynamic from 'next/dynamic';
 
-
+const RemoteComponent = dynamic(() => import('dashboard/dashboard'), {
+  ssr: false,
+});
 export default function Home() {
   return (
     <>
@@ -11,7 +14,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        
+        <h1>Container App</h1>
+       <RemoteComponent />
       </div>
     </>
   );
