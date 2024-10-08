@@ -1,25 +1,22 @@
 /** @type {import('next').NextConfig} */
 import { NextFederationPlugin } from '@module-federation/nextjs-mf';
 
-const MODULE_PATHS = {
-  dashboard: 'dashboard',
-  onboarding: 'onboarding'
-}
+const MODULE_REMOTE_NAME = ['dashboard', 'onboarding'];
 
 const LOCAL_OVERRIDES = {
-  dashboard :{
-    localPort: '3001'
+  dashboard: {
+    localPort: '3001',
   },
-  onboarding:{
-    localPort: '3002'
+  onboarding: {
+    localPort: '3002',
   }
-}
+};
 
 const getModuleFederationRemotes = (isServer, overrides = {}) => {
-  return Object.keys(MODULE_PATHS).reduce((remotes, moduleKey) => {
+  return MODULE_REMOTE_NAME.reduce((remotes, moduleKey) => {
     const { localPort } = overrides[moduleKey] || {};
-    const modulePath = localPort || MODULE_PATHS[moduleKey];
-    const baseUrl = process.env.LOCAL_BASE_URL || process.env.MF_REMOTE_BASE_URL; // Deployed url
+    const modulePath = localPort || moduleKey;
+    const baseUrl = process.env.LOCAL_BASE_URL || process.env.MF_REMOTE_BASE_URL; // Deployed URL
 
     return {
       ...remotes,
@@ -30,6 +27,7 @@ const getModuleFederationRemotes = (isServer, overrides = {}) => {
   }, {});
 };
 
+
 const nextConfig = {
 
   webpack: (config) => {
@@ -39,7 +37,7 @@ const nextConfig = {
       remotes: getModuleFederationRemotes(config.isServer, LOCAL_OVERRIDES ),
       extraOptions: {},
       exposes: {},
-      shared: {},
+      shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
     };
     config.plugins.push(new NextFederationPlugin(moduleFederationConfig));
     return config;
