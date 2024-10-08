@@ -29,6 +29,8 @@ const getModuleFederationRemotes = (isServer, overrides = {}) => {
 
 
 const nextConfig = {
+  reactStrictMode: true,
+  experimental: {esmExternals: 'loose'},
 
   webpack: (config) => {
     const moduleFederationConfig = {
@@ -37,7 +39,7 @@ const nextConfig = {
       remotes: getModuleFederationRemotes(config.isServer, LOCAL_OVERRIDES ),
       extraOptions: {},
       exposes: {},
-      shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
+      shared: {},    
     };
     config.plugins.push(new NextFederationPlugin(moduleFederationConfig));
     return config;

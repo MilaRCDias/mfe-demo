@@ -15,7 +15,7 @@ const nextConfig = {
       exposes: {
         './dashboard': './src/components/dashboard/index.ts',
       },
-      shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
+      shared: {},
     };
     config.plugins.push(new NextFederationPlugin(moduleFederationConfig));
     return config;

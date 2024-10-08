@@ -33,6 +33,7 @@ You can try in out live in the[ Module Federation website](https://webpack.js.or
 
 By configuring the remoteEntry.js file in your Webpack setup, you define which modules are available for sharing and how other applications can access them. This setup enables seamless integration and decoupled architecture where micro frontends are loosely bound yet can still collaborate effectively.
 
+Check the [Module Federation guide](https://module-federation.io/guide/framework/nextjs) for more examples.
 
 ```bash
   webpack: (config) => {
