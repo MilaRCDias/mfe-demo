@@ -1,0 +1,10 @@
+.error{
+font-size: 0.75rem;
+color: red;
+}
+
+
+.date input[type=text] {
+ width: 190px;
+ padding: 0.75rem;
+}

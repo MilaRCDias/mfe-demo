@@ -1,3 +1,4 @@
+import Dashboard from '@/components/dashboard';
 import Head from 'next/head';
 
 export default function Home() {
@@ -10,12 +11,15 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div>
-        <main>
+        <main id='main'>
           <h1>This is a Micro-frontend remote application</h1>
           <h3>
             Here you can render your component to visualize only, this page will not be expose as
             component
           </h3>
+          <div>
+            <Dashboard />
+          </div>
         </main>
       </div>
     </>

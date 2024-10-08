@@ -21,8 +21,6 @@ const getModuleFederationRemotes = (isServer, overrides = {}) => {
     const modulePath = localPort || MODULE_PATHS[moduleKey];
     const baseUrl = process.env.LOCAL_BASE_URL || process.env.MF_REMOTE_BASE_URL; // Deployed url
 
-    console.log('remote:', isServer,`${[moduleKey]}:${moduleKey}@${baseUrl}${modulePath}`);
-
     return {
       ...remotes,
       [moduleKey]: `${moduleKey}@${baseUrl}${modulePath}/_next/static/${
@@ -45,6 +43,18 @@ const nextConfig = {
     };
     config.plugins.push(new NextFederationPlugin(moduleFederationConfig));
     return config;
+  },
+
+  async rewrites() {
+    return [
+      {
+        source: '/api/dash/:path*', 
+        destination: `${process.env.NEXT_PUBLIC_API_DASHBOARD_URL}/api/dash/:path*`, 
+      },
+    ];
+  },
+  env: {
+    NEXT_PUBLIC_API_DASHBOARD_URL: process.env.NEXT_PUBLIC_API_DASHBOARD_URL, 
   },
 
 };
