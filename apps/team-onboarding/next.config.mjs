@@ -3,16 +3,20 @@ import { NextFederationPlugin } from '@module-federation/nextjs-mf';
 
 
 const nextConfig = {
-
+  reactStrictMode: true,
+  
   webpack: (config) => {
     const moduleFederationConfig = {
-      name: 'mfe-onboarding',
+      name: 'onboarding',
       filename: 'static/chunks/remoteEntry.js',
       remotes: {},
       extraOptions: {},
-      exposes: {},
+      exposes: {
+        './login': './src/components/login/index.ts',
+      },
       shared: {},
     };
+
     config.plugins.push(new NextFederationPlugin(moduleFederationConfig));
     return config;
   },
