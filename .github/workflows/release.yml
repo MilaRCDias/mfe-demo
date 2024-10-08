@@ -1,0 +1,72 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/container/**'
+      - 'apps/team-dashboard/**'
+      - 'apps/team-onboarding/**'
+
+
+jobs:
+  detect_changes:
+    name: Detect Monorepo Changes
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.detect.outputs.version }}
+      components: ${{ steps.detect.outputs.components }}
+      hasChanges: ${{ steps.detect.outputs.hasChanges }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - uses: marceloprado/has-changed-path@v1.0.1
+        id: detect
+        with:
+          paths: packages/front packages/common
+
+      - name: Deploy front
+        if: steps.detect.outputs.changed == 'true'
+        run: /deploy-front.sh
+
+
+
+  deploy_container:
+    runs-on: ubuntu-latest
+    #if: contains(github.event.commits.*.modified, 'apps/container/')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Print modified files
+        run: |
+          echo "Modified files: ${{ toJSON(github.event.commits) }}:${{ toJSON(github.event.commits.*.modified) }}: step v: ${{ steps.detect.outputs.version }}: step comp:${{ steps.detect.outputs.components }} step haschange: ${{ steps.detect.outputs.hasChanges }}"
+        
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build and Deploy container to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          yarn build --cwd apps/container
+          yarn netlify deploy --site ${{ secrets.NETLIFY_SITE_ID_CONTAINER_APP }} --prod --dir apps/container/out
+
+  deploy_dashboard:
+    runs-on: ubuntu-latest
+    #if: contains(github.event.commits.*.modified, 'apps/dashboard/')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build and Deploy dashboard to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          yarn build --cwd apps/dashboard
+          yarn netlify deploy --site ${{ secrets.NETLIFY_SITE_ID_DASHBOARD_APP }} --prod --dir apps/dashboard/out
