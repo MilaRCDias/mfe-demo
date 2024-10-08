@@ -1,0 +1,11 @@
+### Review Request Charter
+
+- [ ] I've tested this on local during run and buildtime and am confident that my changes fulfil the requirements of the task.
+- [ ] I have added any newly introduced environment variable to the `.env.example` file and added quick description if they are not self-explanatory.
+- [ ] I’ve added unit/integration/e2e test to support the code changes.
+- [ ] I've ensured no logs transmit any user sensitive data (GDPR Compliance).
+- [ ] All acceptance criteria's outlined in the ticket are accomplished.
+- [ ] I have added meaningful title (having `TKT:` prefix).
+- [ ] I have added meaningful description.
+
+### Description

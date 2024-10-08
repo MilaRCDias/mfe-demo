@@ -4,7 +4,6 @@ import { NextFederationPlugin } from '@module-federation/nextjs-mf';
 
 const nextConfig = {
   reactStrictMode: true,
-  
   webpack: (config) => {
     const moduleFederationConfig = {
       name: 'onboarding',
@@ -14,7 +13,7 @@ const nextConfig = {
       exposes: {
         './login': './src/components/login/index.ts',
       },
-      shared: {},
+      shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
     };
 
     config.plugins.push(new NextFederationPlugin(moduleFederationConfig));

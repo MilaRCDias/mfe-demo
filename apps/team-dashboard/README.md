@@ -37,6 +37,7 @@ container/
 |   |       ├── dashboard/
 |   |   |   ├── dashboard.tsx
 |   |   |   ├── dashboard.module.css
+|   |   |   ├── dashboard.spec.tsx
 |   |   |   └── index.ts
 │   ├── mfe/
 │   ├── pages/
