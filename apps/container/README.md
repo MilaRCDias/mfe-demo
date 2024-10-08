@@ -108,10 +108,10 @@ The code bellow defines a dynamic setup for Module Federation, allowing the seam
 
 ```bash
 const getModuleFederationRemotes = (isServer, overrides = {}) => {
-  return Object.keys(MODULE_PATHS).reduce((remotes, moduleKey) => {
+  return MODULE_REMOTE_NAME.reduce((remotes, moduleKey) => {
     const { localPort } = overrides[moduleKey] || {};
-    const modulePath = localPort || MODULE_PATHS[moduleKey];
-    const baseUrl = process.env.LOCAL_BASE_URL || process.env.MF_REMOTE_BASE_URL; 
+    const modulePath = localPort || moduleKey;
+    const baseUrl = process.env.LOCAL_BASE_URL || process.env.MF_REMOTE_BASE_URL; // Deployed URL
 
     return {
       ...remotes,
@@ -121,6 +121,7 @@ const getModuleFederationRemotes = (isServer, overrides = {}) => {
     };
   }, {});
 };
+
 ```
  - `LOCAL_BASE_URL` variable can be found in the .env.example. Make sure to add it to your `.env.local` file
 
@@ -129,10 +130,7 @@ const getModuleFederationRemotes = (isServer, overrides = {}) => {
 
 
 ```bash
-const MODULE_PATHS = {
-  dashboard: 'dashboard',
-  onboarding: 'onboarding'
-}
+const MODULE_REMOTE_NAME = ['dashboard', 'onboarding'];
 ```
 
 To Override the deploy URL and work with the local remote application, add the local port as bellow:
