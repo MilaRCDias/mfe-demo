@@ -66,7 +66,7 @@ All shared reusable UI components, utils, configs, and data context are in the `
 
 ## Deployment
 
-(TBD) All application will be deployed automatic when merge to main branch from a approved Pull Request. The github action will include verifying which app had changes made in the Pull Request and will deploy only that specific app. The CI/CD setup with Netlify is on progress, in the Pull Request #.
+(TBD) All application will be deployed automatic when merge to main branch from a approved Pull Request. The github action will include verifying which app had changes made in the Pull Request and will deploy only that specific app. The CI/CD setup with Netlify is on progress, in the Pull Request [#6](https://github.com/MilaRCDias/mfe-demo/pull/6).
 
 
 ### Monorepo 
