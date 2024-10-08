@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Login from '@/mfe-modules/login';
+import Dashboard from '@/mfe-modules/dashboard';
+import styles from './index.module.css';
 
 export default function Home() {
   return (
@@ -11,8 +13,14 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div>
-        <h1>Container App</h1>
-        <Login />
+        <div className={styles.title}>
+          <h1>Container App</h1>
+        </div>
+        <main className={styles.container}>
+          <Login />
+
+          <Dashboard />
+        </main>
       </div>
     </>
   );
