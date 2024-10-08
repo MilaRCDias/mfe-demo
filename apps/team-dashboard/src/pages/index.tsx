@@ -1,5 +1,4 @@
 import Dashboard from '@/components/dashboard';
-import DateRange from '@/components/date-picker/date-picker';
 import Head from 'next/head';
 
 export default function Home() {

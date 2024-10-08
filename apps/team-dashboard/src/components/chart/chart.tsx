@@ -21,7 +21,7 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
     (): AxisOptions<ChartDataPoint> => ({
       getValue: (datum) => datum.date,
     }),
-    [data],
+    [],
   );
 
   const secondaryAxes = useMemo(
@@ -30,7 +30,7 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
         getValue: (datum) => datum.value,
       },
     ],
-    [data],
+    [],
   );
 
   return (

@@ -36,12 +36,12 @@ const Dashboard: React.FC = () => {
           return;
         }
 
-        const forecastData = response.data.map((d: any) => ({
+        const forecastData = response.data.map((d) => ({
           date: new Date(d.from),
           value: d.intensity.forecast,
         }));
 
-        const actualData = response.data.map((d: any) => ({
+        const actualData = response.data.map((d) => ({
           date: new Date(d.from),
           value: d.intensity.actual,
         }));
@@ -51,7 +51,7 @@ const Dashboard: React.FC = () => {
           { label: 'Actual', data: actualData },
         ]);
       } catch (err) {
-        setError('Error fetching carbon intensity data');
+        setError(`Error fetching carbon intensity data ${err}`);
       } finally {
         setLoading(false);
       }

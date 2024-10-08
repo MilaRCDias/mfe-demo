@@ -82,7 +82,7 @@ describe('Dashboard Component', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText('Error fetching carbon intensity data')).toBeInTheDocument();
+      expect(screen.getByText(/Error fetching carbon intensity data/i)).toBeInTheDocument();
     });
   });
 
