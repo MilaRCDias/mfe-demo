@@ -30,14 +30,16 @@ run command:
 $ yarn
 ```
 
+3. Copy the environment variables from the `.env.example` file, to your local or production `.env.*` file.
 
-3. To develop all apps and packages, run the following command:
+
+4. To develop all apps and packages, run the following command:
 
 ```bash
 $ yarn dev
 ```
 
-4. To build all apps and packages, run the following command:
+5. To build all apps and packages, run the following command:
 
 ```bash
 $ yarn build && yarn start
